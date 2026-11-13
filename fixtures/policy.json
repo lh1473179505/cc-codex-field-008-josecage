@@ -1,0 +1,29 @@
+{
+  "allowed_algs": [
+    "HS256",
+    "RS256"
+  ],
+  "allowed_issuers": [
+    "https://auth.josecage.example"
+  ],
+  "allowed_audiences": [
+    "josecage-api"
+  ],
+  "allowed_typs": [
+    "JWT"
+  ],
+  "required_claims": [
+    "exp",
+    "iss",
+    "aud",
+    "sub"
+  ],
+  "leeway_seconds": 60,
+  "understood_headers": [
+    "alg",
+    "kid",
+    "typ"
+  ],
+  "allow_embedded_jwk": false,
+  "require_kid": true
+}
