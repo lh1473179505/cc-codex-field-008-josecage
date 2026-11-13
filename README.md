@@ -1,6 +1,6 @@
 # josecage
 
-A small fail-closed verifier for compact JWS / JWT tokens. Parsing, the local keystore, and the policy file already work. `inspect` can print an unverified header and payload. `verify` is still a stub in this snapshot.
+A small fail-closed verifier for compact JWS / JWT tokens. Parsing, the local keystore, and the policy file already work. `inspect` can print an unverified header and payload. `verify` enforces the rules in `docs/verify-rules.md` and writes the report described in `docs/report-schema.md`.
 
 This tool is meant to sit in front of an internal API gateway: tokens are only accepted when the signature, the key binding, and the registered claims all survive a conservative policy. The verifier must not take keys from the token itself, and it must not treat a public RSA key as an HMAC secret.
 
@@ -40,5 +40,5 @@ Parameter names are fixed in `josecage/__main__.py`. Keep them.
 - `josecage/parse.py` — compact JWS parsing
 - `josecage/keys.py` — keystore loader (`oct` HMAC secrets and RSA public keys)
 - `josecage/policy.py` — policy loader
-- `josecage/engine.py` — `verify_jws` (not implemented yet)
+- `josecage/engine.py` — `verify_jws`, the fail-closed verification engine
 - `fixtures/tokens/` — a valid HS256 token, a valid RS256 token, an expired token, and an `alg=none` token

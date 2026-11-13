@@ -37,9 +37,12 @@ def build_parser() -> argparse.ArgumentParser:
 def _read_token(value: str) -> str:
     if value.startswith("@"):
         return Path(value[1:]).read_text(encoding="utf-8").strip()
-    path = Path(value)
-    if path.is_file():
-        return path.read_text(encoding="utf-8").strip()
+    try:
+        path = Path(value)
+        if path.is_file():
+            return path.read_text(encoding="utf-8").strip()
+    except OSError:
+        pass
     return value
 
 
